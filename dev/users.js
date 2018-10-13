@@ -12,6 +12,8 @@ firebase.initializeApp(config);
 
 // VARS
 // ==========================
+var database = firebase.database();
+var user;
 
 
 // HTML VARS
@@ -21,7 +23,6 @@ firebase.initializeApp(config);
 // FUNCTIONS
 // ==========================
 var createNewUser = function(form){
-  var user;
   var firstName = form.createUserFirstName.value;
   var email = form.createUserEmail.value;
   var password = form.createUserPassword.value;
@@ -37,20 +38,50 @@ var createNewUser = function(form){
       displayName: firstName
     });
   })
+  .then(function(){
+    database.ref('users').push({
+      user: user.uid,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+  })
   .catch(function(error) {
-    // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorCode + ': ' + errorMessage);
   });
-}
+};
 
+var updateUser = function(user){
 
+};
+
+var deleteUser = function(user){
+
+};
 
 
 // RUN THE TRAPPPPP
 // ==========================
+
+
+
 $(document).ready(function() {
+
+  // firebase.auth().onAuthStateChanged(function(user) {
+  //   window.user = user;
+
+  //   console.log(user);
+  //   // Step 1:
+  //   //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
+  //   //  If there is a user, log out out user details for debugging purposes.
+  // });
+
+  user = firebase.auth().currentUser;
+  // user = firebase.auth().currentUser;
+  // if(user != null){
+  //   $('.createUser').hide();
+  // }
+
   $('.createUser').on('submit',function(e){
     e.preventDefault();
     createNewUser(this);
