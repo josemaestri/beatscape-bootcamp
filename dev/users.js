@@ -20,10 +20,39 @@ firebase.initializeApp(config);
 
 // FUNCTIONS
 // ==========================
-
+var createNewUser = function(form){
+  var user;
+  var firstName = form.createUserFirstName.value;
+  var email = form.createUserEmail.value;
+  var password = form.createUserPassword.value;
+  
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then(function () {
+    user = firebase.auth().currentUser;
+    // user.sendEmailVerification();
+    // console.log('Validation link was sent to ' + email + '.');
+  })
+  .then(function () {
+    user.updateProfile({
+      displayName: firstName
+    });
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode + ': ' + errorMessage);
+  });
+}
 
 
 
 
 // RUN THE TRAPPPPP
 // ==========================
+$(document).ready(function() {
+  $('.createUser').on('submit',function(e){
+    e.preventDefault();
+    createNewUser(this);
+  });
+});
