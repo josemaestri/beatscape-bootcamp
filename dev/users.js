@@ -13,11 +13,16 @@ firebase.initializeApp(config);
 // VARS
 // ==========================
 var database = firebase.database();
-var user;
+var user = '';
 
 
 // HTML VARS
 // ==========================
+var createUser = $('.createUser');
+var signInUser = $('.signInUser');
+var logoutLink = $('.logout');
+var currentUserDiv = $('.current-user');
+var noCurrentUserDiv = $('.no-current-user');
 
 
 // FUNCTIONS
@@ -30,8 +35,7 @@ var createNewUser = function(form){
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(function () {
     user = firebase.auth().currentUser;
-    // user.sendEmailVerification();
-    // console.log('Validation link was sent to ' + email + '.');
+    showUserInfo(user);
   })
   .then(function () {
     user.updateProfile({
@@ -51,6 +55,22 @@ var createNewUser = function(form){
   });
 };
 
+var logInUser = function(form){
+  var email = form.signInUserEmail.value;
+  var password = form.signInUserPassword.value;
+
+  firebase.auth().signInWithEmailAndPassword(email,password)
+  .then(function(){
+    user = firebase.auth().currentUser;
+    showUserInfo(user);
+  })
+  .catch(function(error){
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode + ': ' + errorMessage);
+  });
+};
+
 var updateUser = function(user){
 
 };
@@ -59,31 +79,40 @@ var deleteUser = function(user){
 
 };
 
+var showUserInfo = function(currentUser){
+  if(currentUser){
+    currentUserDiv.show();
+    noCurrentUserDiv.hide();
+  } else{
+    currentUserDiv.hide();
+    noCurrentUserDiv.show();
+  }
+};
+
+
+// set user var to current user on initial load, if current user in session
+database.ref().once('value',function(){
+  user = firebase.auth().currentUser;
+  showUserInfo(user);
+});
+
 
 // RUN THE TRAPPPPP
 // ==========================
-
-
-
 $(document).ready(function() {
 
-  // firebase.auth().onAuthStateChanged(function(user) {
-  //   window.user = user;
-
-  //   console.log(user);
-  //   // Step 1:
-  //   //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
-  //   //  If there is a user, log out out user details for debugging purposes.
-  // });
-
-  user = firebase.auth().currentUser;
-  // user = firebase.auth().currentUser;
-  // if(user != null){
-  //   $('.createUser').hide();
-  // }
-
-  $('.createUser').on('submit',function(e){
+  createUser.on('submit',function(e){
     e.preventDefault();
     createNewUser(this);
+  });
+
+  signInUser.on('submit',function(e){
+    e.preventDefault();
+    logInUser(this);
+  });
+
+  logoutLink.on('click', function(e){
+    // e.preventDefault();
+    firebase.auth().signOut();
   });
 });

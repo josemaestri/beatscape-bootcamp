@@ -5,17 +5,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dev :: Users</title>
   <link rel="stylesheet" href="">
+  <style>
+    .hide{
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h1>Users</h1>
   
 
-  <form class="createUser">
-    <input type="text" id="createUserFirstName" placeholder="First Name" required>
-    <input type="email" id="createUserEmail" placeholder="Enter email" required>
-    <input type="password" id="createUserPassword" placeholder="Create password" required>
-    <input type="submit" value="Register">
-  </form>
+  <div class="user-options">
+    
+    <div class="no-current-user hide">
+      <form class="createUser">
+        <input type="text" id="createUserFirstName" placeholder="First Name" required>
+        <input type="email" id="createUserEmail" placeholder="Enter email" required>
+        <input type="password" id="createUserPassword" placeholder="Create password" required>
+        <input type="submit" value="Register">
+      </form>
+      <p>or</p>
+      <form action="" class="signInUser">
+        <input type="email" id="signInUserEmail" placeholder="Sign in with email" required>
+        <input type="password" id="signInUserPassword" placeholder="Enter password" required>
+        <input type="submit" value="Sign In">
+      </form>
+    </div>
+
+
+    <div class="current-user hide">
+      <a href="" class="logout">Logout</a>
+    </div>
+
+
+  </div>
+
+
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
