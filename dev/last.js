@@ -18,11 +18,11 @@ $("#submit-button").on("click", function(event){
 
 function loadDoc(artistName) {
    var queryURL="https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&keyword="+artistName;
-   console.log(queryURL)
+   console.log(queryURL);
 
    $.ajax({url:queryURL,method:'GET'})
    .done(function(response){
-       console.log(response);
-       $('#artist').prepend("<p>Artist: "+response.data[i].artist+"</p>");
+       console.table(response);
+       // $('#artist').prepend("<p>Artist: "+response.data[i].artist+"</p>");
    });
 };
