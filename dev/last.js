@@ -43,6 +43,40 @@ function getEvents(artistId){
     method:'GET'
   })
   .done(function(response){
-     console.table(response._embedded.events);
+    // console.table(response._embedded.events);
+    var events = response._embedded.events;
+    if(events.length >= 10){
+      for (var i = 0; i < 10; i++) {
+        var event = events[i];
+        var eventArr = [
+          event.name,
+          event._embedded.venues[0].name,
+          event._embedded.venues[0].city.name,
+          event._embedded.venues[0].state.stateCode,
+          event.url,
+          event.dates.start.localDate,
+          event.dates.start.localTime,
+          'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
+          'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
+        ];
+        console.table(eventArr);
+      }
+    } else{
+      for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+        var eventArr = [
+          event.name,
+          event._embedded.venues[0].name,
+          event._embedded.venues[0].city.name,
+          event._embedded.venues[0].state.stateCode,
+          event.url,
+          event.dates.start.localDate,
+          event.dates.start.localTime,
+          'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
+          'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
+        ];
+        console.table(eventArr);
+      }
+    }
   });
 }
