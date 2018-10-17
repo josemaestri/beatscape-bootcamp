@@ -1,5 +1,5 @@
 var search = function(input){
-  apiURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/output/';
+  apiURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
   // ?key=AIzaSyCH0qC1zXSFhf3POWVnYUv0OnP6V27jMOc&types=(cities)&input='+input;
   // console.log(apiURL);
   $.ajax({
