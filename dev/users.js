@@ -115,4 +115,17 @@ $(document).ready(function() {
     // e.preventDefault();
     firebase.auth().signOut();
   });
-});
+  $("#signInUser").hide();
+  $("#button2").hide();
+
+  $("#button").on('click', function(){
+    $("#createUser").hide();
+    $("#signInUser").show();
+    $("#button2").show();
+  });
+  $("#button2").on('click', function(){
+    $("#createUser").show();
+    $("#signInUser").hide();
+    $("#button2").hide();
+  });
+}); 

@@ -1,0 +1,118 @@
+body {
+	font-family: Arial, Helvetica, san-serif;
+	font-size: 14px;
+	color: #3E3E3B;
+	background-color: #CDC5C1;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+main {
+	flex: 1 0 auto;
+}
+
+.container {
+    width: 90%;
+}
+.scale-transition {
+	align-items: flex-start;
+    margin: auto;
+    width: 75%;
+}
+
+/* Return Icon */
+header {
+    margin: 24px 0;
+}
+
+.btn-large i {
+	font-size: 2.75rem;
+	background-color: #EBECED;
+	color: #4C586F;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+	color: #3E3E3B;
+}
+
+.return-btn a {
+    padding: 10px;
+}
+
+
+/* Placeholder Text */
+input::-webkit-input-placeholder {
+    color: rgba(76, 88, 111, .5) !important;
+    }
+
+/* Input Text */
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+    border-bottom: 1px solid #4C586F;
+    font-size: 14px;
+    color: #4C586F;
+}
+
+/* Return to Homepage Icon */
+.material-icons {
+    color: #4C586F;
+}
+
+/* Buttonsssss */
+.row#register {
+   float: right;
+   margin-top: 20px;
+   margin-bottom: 100px;
+}
+.row#submit {
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.waves-effect {
+    background-color: rgba(76, 88, 111, .5);
+}
+.waves-input-wrapper .waves-button-input {
+    color: #EBECED;
+}
+
+a#button {
+    font-size: 16px;
+    color: #4C586F;
+    cursor: pointer;
+}
+
+a#button2 {
+    font-size: 16px;
+    color: #4C586F;
+    cursor: pointer;
+}
+a#button:hover, a#button2:hover {
+    text-decoration: underline;
+}
+
+#signInUser {
+    display: none;
+}
+a.hvr-shadow-radial:hover {
+    border-radius: 50%;
+    background: -webkit-radial-gradient(50% 50%, ellipse, rgba(76, 88, 111, .2), rgba(0, 0, 0, 0) 200%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(76, 88, 111, .2), rgba(0, 0, 0, 0) 200%);
+}
+
+/*Footer*/
+footer.page-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	background-color: #A2AAB0;
+	color: #4C586F;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+    text-align: center;
+    /* margin-top: 50px; */
+    padding: 7px;
+}

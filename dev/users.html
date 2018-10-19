@@ -1,122 +1,145 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dev :: Users</title>
-  <link rel="stylesheet" href="">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="css/user.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    .hide{
+    .hide-this {
       display: none;
-    }
-
-
-    * { box-sizing: border-box; }
-    body {
-      font: 16px Arial; 
-    }
-    .autocomplete {
-      /*the container must be positioned relative:*/
-      position: relative;
-      display: inline-block;
-    }
-    input {
-      border: 1px solid transparent;
-      background-color: #f1f1f1;
-      padding: 10px;
-      font-size: 16px;
-    }
-    input[type=text] {
-      background-color: #f1f1f1;
-      width: 100%;
-    }
-    input[type=submit] {
-      background-color: DodgerBlue;
-      color: #fff;
-    }
-    .autocomplete-items {
-      position: absolute;
-      border: 1px solid #d4d4d4;
-      border-bottom: none;
-      border-top: none;
-      z-index: 99;
-      /*position the autocomplete items to be the same width as the container:*/
-      top: 100%;
-      left: 0;
-      right: 0;
-    }
-    .autocomplete-items div {
-      padding: 10px;
-      cursor: pointer;
-      background-color: #fff; 
-      border-bottom: 1px solid #d4d4d4; 
-    }
-    .autocomplete-items div:hover {
-      /*when hovering an item:*/
-      background-color: #e9e9e9; 
-    }
-    .autocomplete-active {
-      /*when navigating through the items using the arrow keys:*/
-      background-color: DodgerBlue !important; 
-      color: #ffffff; 
     }
   </style>
 </head>
+
 <body>
-  <h1>Users</h1>
-  
-
-  <div class="user-options hide">
-    
-    <div class="no-current-user hide">
-      <form class="createUser">
-        <input type="text" id="createUserFirstName" placeholder="First Name" required>
-        <input type="email" id="createUserEmail" placeholder="Enter email" required>
-        <input type="password" id="createUserPassword" placeholder="Create password" required>
-        <input type="submit" value="Register">
-      </form>
-      <p>or</p>
-      <form action="" class="signInUser">
-        <input type="email" id="signInUserEmail" placeholder="Sign in with email" required>
-        <input type="password" id="signInUserPassword" placeholder="Enter password" required>
-        <input type="submit" value="Sign In">
-      </form>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="return-btn">
+            <a class="large material-icons hvr-shadow-radial" href="..//index.html">keyboard_backspace
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </header>
+
+  <!-- <div class="row">
+      <div class="col s12">
+        <h1>Create Account</h1>
+      </div>
+    </div> -->
+
+  <div class="user-options">
+
+    <div class="no-current-user hide-this">
+
+      <div class="container scale-transition" id="createUser">
+        <form class="createUser">
+
+          <div class="row">
+            <div class="col s1">
+              <i class="material-icons prefix">face</i>
+            </div>
+            <div class="col s11">
+              <input type="text" id="createUserFirstName" placeholder="First Name" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s1">
+              <i class="material-icons prefix">email</i>
+            </div>
+            <div class="col s11">
+              <input type="email" id="createUserEmail" placeholder="Enter email" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s1">
+              <i class="material-icons prefix">lock</i>
+            </div>
+            <div class="col s11">
+              <input type="password" id="createUserPassword" placeholder="Create password" required>
+            </div>
+          </div>
+
+        </form>
+
+        <div class="row" id="register">
+          <div class="col">
+            <input class="btn waves-effect waves-light blue-grey lighten-1" type="submit" value="Register">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12" style="text-align: center;">
+            <a id="button">Already have an account?</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container scale-transition" id="signInUser">
+        <form action="" class="signInUser">
+
+          <div class="row">
+              <div class="col s1">
+                  <i class="material-icons prefix">email</i>
+                </div>
+              <div class="col s11">
+              <input type="email" id="signInUserEmail" placeholder="Sign in with email" required>
+            </div>
+          </div>
+
+          <div class="row">
+             <div class="col s1">
+              <i class="material-icons prefix">lock</i>
+            </div>
+            <div class="col s11">
+              <input type="password" id="signInUserPassword" placeholder="Enter password" required>
+            </div>
+          </div>
+
+            <div class="row" id="submit">
+              <div class="col">
+              <input class="btn waves-effect waves-light blue-grey lighten-1" type="submit" value="Sign In">
+              </div>
+            </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col s12" style="text-align: center;">
+          <a id="button2">Don't have an account?</a>
+        </div>
+      </div>
 
 
-    <div class="current-user hide">
-      <a href="" class="logout">Logout</a>
+      <div class="current-user hide-this">
+        <a href="" class="logout">Logout</a>
+      </div>
+
+
     </div>
-
-
   </div>
 
-  <!-- <form action="" class="lastfm">
-    <input type="text" id="artist" placeholder="artist here">
-    <input type="submit" value="submit" id="submit-button">
-  </form> -->
-  
- <!--  <div id="map" class="hide"></div>
-  <input type="text" class="address-search">
- -->
-
- <form autocomplete="off" action="" class="tag-form">
-  <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="myTag" placeholder="Tag">
-  </div>
-  <input type="submit">
-</form>
+  <!-- Footer -->
+  <footer class="page-footer">
+    © 2018 BEATSCAPE
+  </footer>
 
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script> -->
-  <!-- <script src="users.js"></script> -->
-  <script src="last.js"></script>
-  <!-- <script src="ticketmaster.js"></script> -->
-
-  <!-- <scrirpt src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH0qC1zXSFhf3POWVnYUv0OnP6V27jMOc&libraries=places&callback=searchBack"></script> -->
-
+  <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+  <script src="users.js"></script>
 </body>
+
 </html>

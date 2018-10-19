@@ -9,11 +9,92 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
 
-  
+<body>
+  <!-- User Button -->
+      <header>
+          <div class="container">
+            <div class="row">
+              <div class="col s2 offset-s10">
+                <div class="user-btn">
+                  <a class="material-icons hvr-shadow-radial" href="dev/users.html">person
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+<!-- User Button
+    <div class="row">
+      <div class="col s2 offset-s10">
+        <div class="user-btn">
+                <a class="btn-floating btn-large waves-effect waves-light blue-grey lighten-5" href="dev/users.html">
+                  <i class="large material-icons">person</i>
+                </a>
+        </div>
+      </div>
+    </div>  -->
+
+<div class="container">
+  <!-- Logo -->
+    <div class="row">
+      <div class="col s12">
+      <img class="logo-graphic" alt="bandscape-logo-graphic" src="assets/images/Logo.svg">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+      <p class="center-align" id="slogan">Discover the hidden rhythms.</p>
+      </div>
+    </div>
+
+  <!-- Search Bar -->
+  <!-- <div class="row">
+      <div class="col s12 l8">
+    <nav>
+        <div class="search-bar">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label for="search"><i class="small material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </nav>
+        </div>
+    </div> -->
+
+
+  <!-- Search Button -->
+  <div class="col s12">
+    <div class="floating-action-btn click-to-toggle direction-top direction-left">
+      <!-- <a class="btn-floating btn-large waves-effect waves-light blue-grey lighten-5">
+        <i class="large material-icons">search</i>
+      </a> -->
+      <div class="search-container transition waves-effect waves-light blue-grey lighten-5">
+          <div class="input">
+            <label>Search</label>
+            <input id="search-field" type="text" onkeydown="search()">
+          </div>
+          <i id="search-toggle" class="material-icons">search</i>
+          <i id="search-toggle-2" class="material-icons" style="display:none;">search</i>
+          <span class="circle"></span>
+        </div>
+    </div>
+  </div>
+ 
+
+</div>
+
+<!-- Footer -->
+<footer class="page-footer">
+            © 2018 BEATSCAPE
+</footer>
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
+
 </html>
