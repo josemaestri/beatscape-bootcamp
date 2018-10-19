@@ -161,6 +161,7 @@ var lastFMfunction = function(country){
   // call api with location parameter equaling country
   // var lastApiURL  = 'http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=united+states&limit=10&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6&location='+country;
   var lastApiURL  = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&limit=10&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6&tag='+country;
+  var lastApiArtistURL  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6';
   
   // var musicApiURL = 'http://api.musicgraph.com/api/v2/artist/search?api_key=413afb087fe9c8e2ab4600ec277ae3e2&limit=10&country=' + country;
 
@@ -170,8 +171,44 @@ var lastFMfunction = function(country){
   })
   .done(function(response) {
     console.log("success");
+    $('.artists-results').remove();
     var artists = response.topartists.artist;
-    console.table(artists);
+    var artistNameArr = [];
+    for (var i = 0; i < artists.length; i++) {
+      artistNameArr.push(artists[i].name.toLowerCase());
+    }
+
+    var artistsObj = {};
+
+    for (var i = 0; i < artistNameArr.length; i++) {
+      $.ajax({
+        url: lastApiArtistURL,
+        method: 'get',
+        // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+        data: {artist: artistNameArr[i]},
+      })
+      .done(function(response) {
+        console.log("success");
+        console.log(response);
+        var artist = response.artist;
+        var name = $('<h2 class="artist-name">'+artist.name+'</h2>');
+        var img = $('<img src="'+artist.image[0]["#text"]+'" alt="'+artist.name+'-'+artist.image[0].size+'" />');
+        var bio = $('<p>'+artist.bio.summary+'</p>');
+        var hr = $('<hr>');
+        var artistsEl = $('<div class="artists-results"></div>');
+        artistsEl.append(name).append(img).append(bio).append(hr);
+        $('body').append(artistsEl);
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+      
+    }
+
+    console.table(artistNameArr);
   })
   .fail(function() {
     console.log("error");
