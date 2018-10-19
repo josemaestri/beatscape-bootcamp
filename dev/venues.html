@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Beatscape</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 class="text-center">Venues</h1>
+        
+        <form>
+            <div class="form-control">
+                <label for="artist">Artist Name</label>
+                <input class="form-control" id="artist" type="text">
+            </div>            
+            <button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
+        </form>
+        
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse">Upcoming Events</a>
+                    </h4>
+                </div>
+                <div id="collapse" class="panel-collapse collapse">
+                    <div class="panel-name">Event Name:</div>
+                    <div class="panel-venue">Venue:</div>
+                    <div class="panel-city">City:</div>
+                    <div class="panel-state">State:</div>
+                    <div class="panel-country">Country:</div>
+                    <div class="panel-website">Website:</div>
+                    <div class="panel-date">Date:</div>
+                    <div class="panel-time">Time:</div>
+                    <div class="panel-Min Price: ">Min. Price:</div>
+                    <div class="panel-Max Price: ">Max. Price:</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/last.js"></script>
+
+</body>
+</html>
