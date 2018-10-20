@@ -115,9 +115,9 @@ $('.tag-form').on('submit',function(e){
 
 var lastFMfunction = function(country){
   // call api with location parameter equaling country
-  var lastApiURL  = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&limit=10&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6&tag='+country;
-  var lastApiArtistURL  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6';
-  var lastApiTopTrackURL = 'http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&limit=10&api_key=c6faf2f83e9eec2496df0df7993cb7f6&format=json&artist=';
+  var lastApiURL  = 'https://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&limit=10&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6&tag='+country;
+  var lastApiArtistURL  = 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6';
+  var lastApiTopTrackURL = 'https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&limit=10&api_key=c6faf2f83e9eec2496df0df7993cb7f6&format=json&artist=';
 
   $.ajax({
     url: lastApiURL,
@@ -274,7 +274,7 @@ var getEvents = function(artistId){
       }
     }
     console.table(eventArr);
-    
+
     for (var i = 0; i < eventArr.length; i++) {
     	console.log(eventArr[i]);
     }
