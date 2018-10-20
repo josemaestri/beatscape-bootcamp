@@ -81,11 +81,12 @@ var deleteUser = function(user){
 
 var showUserInfo = function(currentUser){
   if(currentUser){
-    currentUserDiv.show();
-    noCurrentUserDiv.hide();
+    currentUserDiv.removeClass('hide');
+    noCurrentUserDiv.addClass('hide');
+    $('.current-user h2 > span').text(user.displayName);
   } else{
-    currentUserDiv.hide();
-    noCurrentUserDiv.show();
+    currentUserDiv.addClass('hide');
+    noCurrentUserDiv.removeClass('hide');
   }
 };
 
@@ -115,6 +116,7 @@ $(document).ready(function() {
     // e.preventDefault();
     firebase.auth().signOut();
   });
+  
   $("#signInUser").hide();
   $("#button2").hide();
 

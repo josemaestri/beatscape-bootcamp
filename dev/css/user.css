@@ -90,8 +90,8 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     margin-top: 20px;
     margin-bottom: 100px;
 }
-.waves-effect {
-    background-color: rgba(76, 88, 111, .5);
+.blue-grey.lighten-1 {
+    background-color: rgb(76, 88, 111) !important;
 }
 .waves-input-wrapper .waves-button-input {
     color: #EBECED;

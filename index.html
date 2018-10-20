@@ -14,7 +14,7 @@
 <body>
   <!-- User Button -->
       <header>
-          <div class="container">
+          <div class="container scale-transition" id="userBtn">
             <div class="row">
               <div class="col s2 offset-s10">
                 <div class="user-btn">
@@ -36,7 +36,7 @@
       </div>
     </div>  -->
 
-<div class="container">
+<div class="container" id="Logo">
   <!-- Logo -->
     <div class="row">
       <div class="col s12">
@@ -48,6 +48,7 @@
       <p class="center-align" id="slogan">You are hear.</p>
       </div>
     </div>
+</div>
 
   <!-- Search Bar -->
   <!-- <div class="row">
@@ -68,8 +69,11 @@
 
 
   <!-- Search Button -->
-  <div class="col s12">
-    <div class="floating-action-btn click-to-toggle direction-top direction-left">
+  <div class="container scale-transition" id="searchBar">
+  <div class="row">
+  <div class="col s2 offset-s10">
+
+    <div class="floating-action-btn click-to-toggle direction-top direction-left scale-transition" id="searchBtn">
       <!-- <a class="btn-floating btn-large waves-effect waves-light blue-grey lighten-5">
         <i class="large material-icons">search</i>
       </a> -->
@@ -77,14 +81,18 @@
       <div class="search-container transition waves-effect waves-light blue-grey lighten-5">
           
             <div class="input autocomplete">
-              
-              <label>Search</label>
+              <div class="col s10 push-s2">
+              <label></label>
               <!-- <input id="search-field" type="text" onkeydown="search()"> -->
+                
               <input id="search-field" type="text" name="searchField">
+                </div>
               <!-- <a href="#">></a> -->
-              
-            </div>
-          
+              <div class="col s2 pull-s10">
+              <a class="tiny material-icons" href="">close</a>
+              </div>
+          </div>
+         
           <i id="search-toggle" class="material-icons">search</i>
           <i id="search-toggle-2" class="material-icons" style="display:none;">search</i>
           <span class="circle"></span>
@@ -93,9 +101,12 @@
     </div>
   </div>
  
-
+</div>
 </div>
 
+<div class="artist-wrapper">
+  
+</div>
 <!-- Footer -->
 <footer class="page-footer">
             © 2018 BEATSCAPE

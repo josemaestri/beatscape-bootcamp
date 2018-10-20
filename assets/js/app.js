@@ -1,9 +1,10 @@
 var searchField = $('#search-field');
-$(document).ready(function(){
-  $('.fixed-action-btn').floatingActionButton();
-});
+// $(document).ready(function(){
+//   $('.fixed-action-btn').floatingActionButton();
+// });
 
 // Search Bar
+
 $('#search-toggle').click(function(){
   $(this).hide();
   $('#search-toggle-2').show();

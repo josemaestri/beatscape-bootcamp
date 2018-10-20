@@ -8,45 +8,45 @@ function autocomplete(inp, arr) {
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
-      var a, b, i, val = this.value;
-      /*close any already open lists of autocompleted values*/
-      closeAllLists();
-      if (!val) { return false;}
-      currentFocus = -1;
-      /*create a DIV element that will contain the items (values):*/
-      a = document.createElement("DIV");
-      a.setAttribute("id", this.id + "-autocomplete-list");
-      a.setAttribute("class", "autocomplete-items");
-      /*append the DIV element as a child of the autocomplete container:*/
-      this.parentNode.parentNode.appendChild(a);
-      /*for each item in the array...*/
-      for (i = 0; i < arr.length; i++) {
-        /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          /*create a DIV element for each matching element:*/
-          b = document.createElement("DIV");
-          /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].substr(val.length);
-          /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-          /*execute a function when someone clicks on the item value (DIV element):*/
-              b.addEventListener("click", function(e) {
-              /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
+    var a, b, i, val = this.value;
+    /*close any already open lists of autocompleted values*/
+    closeAllLists();
+    if (!val) { return false;}
+    currentFocus = -1;
+    /*create a DIV element that will contain the items (values):*/
+    a = document.createElement("DIV");
+    a.setAttribute("id", this.id + "-autocomplete-list");
+    a.setAttribute("class", "autocomplete-items");
+    /*append the DIV element as a child of the autocomplete container:*/
+    this.parentNode.parentNode.parentNode.appendChild(a);
+    /*for each item in the array...*/
+    for (i = 0; i < arr.length; i++) {
+      /*check if the item starts with the same letters as the text field value:*/
+      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        /*create a DIV element for each matching element:*/
+        b = document.createElement("DIV");
+        /*make the matching letters bold:*/
+        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += arr[i].substr(val.length);
+        /*insert a input field that will hold the current array item's value:*/
+        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+        /*execute a function when someone clicks on the item value (DIV element):*/
+        b.addEventListener("click", function(e) {
+          /*insert the value for the autocomplete text field:*/
+          inp.value = this.getElementsByTagName("input")[0].value;
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
-          });
-          a.appendChild(b);
-        }
+            });
+        a.appendChild(b);
       }
+    }
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
-      if (x) x = x.getElementsByTagName("div");
-      if (e.keyCode == 40) {
+    var x = document.getElementById(this.id + "autocomplete-list");
+    if (x) x = x.getElementsByTagName("div");
+    if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
         increase the currentFocus variable:*/
         currentFocus++;
@@ -66,7 +66,7 @@ function autocomplete(inp, arr) {
           if (x) x[currentFocus].click();
         }
       }
-  });
+    });
   function addActive(x) {
     /*a function to classify an item as "active":*/
     if (!x) return false;
@@ -89,14 +89,14 @@ function autocomplete(inp, arr) {
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
-      x[i].parentNode.removeChild(x[i]);
+        x[i].parentNode.removeChild(x[i]);
+      }
     }
   }
-}
-/*execute a function when someone clicks in the document:*/
-document.addEventListener("click", function (e) {
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
     closeAllLists(e.target);
-});
+  });
 }
 
 autocomplete(document.getElementById("search-field"), tags);
@@ -106,6 +106,7 @@ $('.tag-form').on('submit',function(e){
   var tag = this.searchField.value;
   tag = tag.toLowerCase().replace(/ /g, '+');
   console.log(tag);
+  $('#Logo').addClass('hide');
   lastFMfunction(tag);
 });
 
@@ -127,7 +128,9 @@ var lastFMfunction = function(country){
     console.log("success");
     $('.artists-results').remove();
     var artistsEl = $('<ul class="collapsible popout artists-results" data-collapsible="accordion"></ul>');
-    $('body').append(artistsEl);
+    $('.artist-wrapper').css('margin-top', '-130px');
+    $('.artist-wrapper').append(artistsEl);
+    $('.search-container').css('top', '-115px');
     var artists = response.topartists.artist;
     var artistNameArr = [];
     for (var i = 0; i < artists.length; i++) {
@@ -155,12 +158,12 @@ var lastFMfunction = function(country){
         var popoutHeader = $('<div class="collapsible-header valign-wrapper"><div class="row"><div class="col s12">'+artist.name+'</div></div></div>');
         var popoutBody = $('<div class="collapsible-body"> <div class="row"> <div class="col s9"></div> <div class="col s3"></div> </div> </div>');
         popoutBody.find('.s9').append(bio);
-		popoutBody.find('.s3').append(img);
+        popoutBody.find('.s3').append(img);
         artistEl.append(popoutHeader).append(popoutBody);
         console.log(artistEl);
         artistsEl.append(artistEl);
         
-         $.ajax({
+        $.ajax({
           url: lastApiTopTrackURL+artist.name,
           method: 'get'
         })
@@ -174,17 +177,23 @@ var lastFMfunction = function(country){
           for (var i = 0; i < track.length; i++) {
            var el = $('<li>'+track[i].name+'</li>');
            trackBody.find('.tracks').append(el);
-          }
-          trackEl.find('li').append(trackHeader).append(trackBody); 
-          popoutBody.append(trackEl).promise().done(function(){
-          	$('.collapsible').collapsible({
-          		accordion: true
-          	});
+         }
+         trackEl.find('li').append(trackHeader).append(trackBody); 
+         popoutBody.append(trackEl).promise().done(function(){
+           $('.collapsible').collapsible({
+            accordion: true
           });
+         });
 
-          var tmArtist = artist.name.toLowerCase().replace(/ /g,'+');
-          loadDoc(tmArtist); 
-        });
+         var tmArtist = artist.name.toLowerCase().replace(/ /g,'+');
+
+         var eventEl = $('<ul class="collapsible venueResults" data-collapsible="accordion"><li></li></ul>');
+         var eventHeader = $('<div class="collapsible-header valign-wrapper upcoming-shows" data-artist="'+tmArtist+'"><i class="material-icons">expand_more</i><h6>Next Upcoming Show</h6>');
+         var eventBody = $('<div class="collapsible-body"><ol class="Venues"></ol></div>');
+         eventEl.find('li').append(eventHeader).append(eventBody);
+         popoutBody.append(eventEl);
+
+       });
       })
       .fail(function() {
         console.log("error");
@@ -202,7 +211,34 @@ var lastFMfunction = function(country){
   })
   .always(function() {
     console.log("complete");
-  });
+  })
+  .promise().done(function(){
+     $('.collapsible').collapsible({
+       accordion: true
+     });
+     $('body').on('click','li.active .upcoming-shows', function() {
+      // e.preventDefault();
+       var theEl = $(this);
+       var theArtist = theEl.data('artist');
+
+       loadDoc(theArtist, theEl); 
+       // if(typeof result !== null){
+       //    console.log('test');
+       //    var insertHTML;
+       //    if(typeof result === []){
+       //      var eventArr = result;
+       //      // for (var i = 0; i < eventArr.length; i++) {
+       //        insertHTML = $('<dl><dt>Show Name</dt><dd>'+eventArr[0]+'</dd><dt>Venue</dt><dd>'+eventArr[1]+'</dd><dt>City</dt><dd>'+eventArr[2]+', ' + eventArr[3] + '</dd><dt>More info</dt><dd><a target="_blank" href="'+eventArr[4]+'">Click Here <i class="material-icons">chevron_right</i></a></dd></dl>');
+       //      // }
+       //    } else{
+       //      insertHTML = $('<p>'+result+'</p>');
+       //    }
+       //    console.log(result);
+       //    theEl.siblings('.collapsible-body').html(insertHTML);
+
+       // }
+     });
+   });
   
 }
 
@@ -212,71 +248,113 @@ var lastFMfunction = function(country){
 
 
 
-var loadDoc = function(artistName) {
-   var queryURL="https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&keyword="+artistName;
-   console.log(queryURL);
+var loadDoc = function(artistName, el) {
+ var theEl = $(el);
+ var queryURL="https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&keyword="+artistName;
+ console.log(queryURL);
 
-   $.ajax({url:queryURL,method:'GET'})
-   .done(function(response){
-       if(response.page.totalPages<1){
-           console.log("Artist not Available");
-       }
-       else{
-           console.table(response._embedded.attractions[0]);
-           if(response._embedded.attractions[0].upcomingEvents._total>0){
-               getEvents(response._embedded.attractions[0].id);
-           }
-           else{console.log("Artist Has No Upcoming Shows")};
-       }
-   });
+ $.ajax({url:queryURL,method:'GET'})
+ .done(function(response){
+   if(response.page.totalPages<1){
+     theEl.siblings('.collapsible-body').html("Artist not Available");
+   }
+   else{
+     console.table(response._embedded.attractions[0]);
+     if(response._embedded.attractions[0].upcomingEvents._total>0){
+       getEvents(response._embedded.attractions[0].id, el);
+     }
+     else{
+      theEl.siblings('.collapsible-body').html("Artist Has No Upcoming Shows");
+    }
+   }
+ })
+ .fail(function(error){
+  return 'error';
+ });
 }
 
-var getEvents = function(artistId){
-   var queryURL="https://app.ticketmaster.com/discovery/v2/events.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&attractionId="+artistId;
+var getEvents = function(artistId, el){
+ var theEl = $(el);
+ var queryURL="https://app.ticketmaster.com/discovery/v2/events.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&attractionId="+artistId;
 
-   $.ajax({
-    url:queryURL,
-    method:'GET'
-  })
-  .done(function(response){
+ $.ajax({
+  url:queryURL,
+  method:'GET'
+})
+ .done(function(response){
     // console.table(response._embedded.events);
     var events = response._embedded.events;
+
     var eventArr;
-    if(events.length >= 10){
-      for (var i = 0; i < 10; i++) {
-        var event = events[i];
+    // if(events.length >= 10){
+      // for (var i = 0; i < 10; i++) {
+        var event = events[0];
         eventArr = [
-          event.name,
-          event._embedded.venues[0].name,
-          event._embedded.venues[0].city.name,
-          event._embedded.venues[0].state.stateCode,
-          event.url,
-          event.dates.start.localDate,
-          event.dates.start.localTime,
-          'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
-          'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
+        event.name,
+        event._embedded.venues[0].name,
+        event._embedded.venues[0].city.name,
+        event._embedded.venues[0].state.stateCode,
+        event.url,
+        event.dates.start.localDate,
+        event.dates.start.localTime
+        // 'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
+        // 'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
         ];
-      }
-    } else{
-      for (var i = 0; i < events.length; i++) {
-        var event = events[i];
-        eventArr = [
-          event.name,
-          event._embedded.venues[0].name,
-          event._embedded.venues[0].city.name,
-          event._embedded.venues[0].state.stateCode,
-          event.url,
-          event.dates.start.localDate,
-          event.dates.start.localTime,
-          'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
-          'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
-        ];
-      }
-    }
+    //   }
+    // } else{
+    //   for (var i = 0; i < events.length; i++) {
+    //     var event = events[i];
+    //     eventArr = [
+    //     event.name,
+    //     event._embedded.venues[0].name,
+    //     event._embedded.venues[0].city.name,
+    //     event._embedded.venues[0].state.stateCode,
+    //     event.url,
+    //     event.dates.start.localDate,
+    //     event.dates.start.localTime,
+    //     'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
+    //     'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
+    //     ];
+    //   }
+    // }
     console.table(eventArr);
 
-    for (var i = 0; i < eventArr.length; i++) {
-    	console.log(eventArr[i]);
-    }
-  });
+    insertHTML = $('<ul><li><strong>Name:</strong> '+eventArr[0]+'</li><li><strong>Venue:</strong> '+eventArr[1]+'</li><li><strong>City:</strong> '+eventArr[2]+', ' + eventArr[3] + '</li><li><strong>Date:</strong> '+eventArr[5]+' @ '+eventArr[6]+'<li><strong>More info:</strong> <a target="_blank" href="'+eventArr[4]+'">Click Here</a></li></ul>');
+    theEl.siblings('.collapsible-body').html(insertHTML);
+
+  })
+ .fail(function(error){
+    return 'Event Error';
+ });
 }
+
+$(document).ready(function(){
+
+  var showSearch = function(){
+    $('#search-toggle').hide();
+    $('#search-toggle-2').show();
+    $('.search-container').addClass('active');
+    $('.input').addClass('active');
+    $('#search-field').focus();
+    $('.input').children('label').hide();
+  }
+
+  $("#searchBtn").on('click', '#search-toggle', function(){
+    // var userBtn = $('#userBtn');
+    // var searchBtn = $('#searchBtn');
+    var userTop = document.querySelector('#userBtn').offsetTop;
+    var searchTop = document.querySelector('#searchBtn').offsetTop;
+    var math = userTop - searchTop;
+
+    // $('.search-container').css('top',0);
+    $('.search-container').animate({
+      'top': math+'px',
+      'margin-left': '-250px'
+    }, 250,function(){
+      showSearch();
+      $("#userBtn").animate({opacity: 0},250);
+    });
+
+    
+  });
+});
