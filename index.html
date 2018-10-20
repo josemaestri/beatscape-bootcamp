@@ -72,15 +72,23 @@
       <!-- <a class="btn-floating btn-large waves-effect waves-light blue-grey lighten-5">
         <i class="large material-icons">search</i>
       </a> -->
+      <form action="" autocomplete="off" class="tag-form">
       <div class="search-container transition waves-effect waves-light blue-grey lighten-5">
-          <div class="input">
-            <label>Search</label>
-            <input id="search-field" type="text" onkeydown="search()">
-          </div>
+          
+            <div class="input autocomplete">
+              
+              <label>Search</label>
+              <!-- <input id="search-field" type="text" onkeydown="search()"> -->
+              <input id="search-field" type="text" name="searchField">
+              <!-- <a href="#">></a> -->
+              
+            </div>
+          
           <i id="search-toggle" class="material-icons">search</i>
           <i id="search-toggle-2" class="material-icons" style="display:none;">search</i>
           <span class="circle"></span>
         </div>
+        </form>
     </div>
   </div>
  
@@ -95,6 +103,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/search.js"></script>
 </body>
 
 </html>

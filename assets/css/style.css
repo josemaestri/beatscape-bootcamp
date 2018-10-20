@@ -38,12 +38,12 @@ header {
 /*Buttons*/
 .material-icons {
 	font-size: 2.75rem;
-    color: #4C586F;
+  color: #4C586F;
 }
 a.hvr-shadow-radial:hover {
 	border-radius: 50%;
-    background: -webkit-radial-gradient(50% 50%, ellipse, rgba(76, 88, 111, .2), rgba(0, 0, 0, 0) 200%);
-    background: radial-gradient(ellipse at 50% 50%, rgba(76, 88, 111, .2), rgba(0, 0, 0, 0) 200%);
+  background: -webkit-radial-gradient(50% 50%, ellipse, rgba(76, 88, 111, .2), rgba(0, 0, 0, 0) 200%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(76, 88, 111, .2), rgba(0, 0, 0, 0) 200%);
 }
 .btn-large i {
 	font-size: 2.75rem;
@@ -58,122 +58,123 @@ a.hvr-shadow-radial:hover {
 
 /* .waves-effect {
  position: relative;
-} */
+ } */
 
-/* Search Bar */
+ /* Search Bar */
 
-.search-container {
-    display: inline-block;
-    /* background-color: #fff; */
-    padding: 10px 10px 10px 10px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    min-width: 60px;
-    height: 60px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    position: relative;
+ .search-container {
+  display: inline-block;
+  /* background-color: #fff; */
+  padding: 10px 10px 10px 10px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  min-width: 60px;
+  height: 60px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: visible;
 }
 .input input {
-    display: block;
-    line-height: 3rem;
-    height: 3rem;
-    border: 0;
-    padding: 10px 10px 10px 0;
-    box-sizing: border-box;
-    width: 250px;
-    border-radius: 2px;
-    z-index: 1;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: 2em !important;
-    color: #4C586F;
+  display: block;
+  line-height: 3rem;
+  height: 3rem;
+  border: 0;
+  padding: 10px 10px 10px 0;
+  box-sizing: border-box;
+  width: 250px;
+  border-radius: 2px;
+  z-index: 1;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: 2em !important;
+  color: #4C586F;
 }
 .search-container.active {
-    background-color: #fff !important;
-    text-align: right;
-    border-radius: 3px;
-    padding: 10px;
+  background-color: #fff !important;
+  text-align: right;
+  border-radius: 3px;
+  padding: 10px;
 }
 .input {
-    position: relative;
-    z-index: 1;
-    width: 0;
-    overflow: hidden;
-    height: 3rem;
-    display: inline-block;
+  position: relative;
+  z-index: 1;
+  width: 0;
+  overflow: hidden;
+  height: 3rem;
+  display: inline-block;
 }
 .input label {
-    position: absolute;
-    left: 0;
-    line-height: 3rem;
-    opacity: .3;
-    z-index: -1;
+  position: absolute;
+  left: 0;
+  line-height: 3rem;
+  opacity: .3;
+  z-index: -1;
 }
 .input:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    min-width: 0;
-    height: 2px;
-    background-color: #4C586F;
-    transition-delay: .5s !important;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  min-width: 0;
+  height: 2px;
+  background-color: #4C586F;
+  transition-delay: .5s !important;
 }
 .input.active:before {
-    width: 100%;
+  width: 100%;
 }
 .input input:focus {
-    outline: none;
+  outline: none;
 }
 .input.active {
-    width: 250px;
-    height: 3rem;
+  width: 250px;
+  height: 3rem;
 }
 
 .transition,
 .input.active:before,
 .input,
 .input input {
-    -webkit-transition: .5s;
-    -moz-transition: .5s;
-    transition: .5s;
-    -webkit-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
-    -moz-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
-    transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+  -webkit-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+  -moz-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+  transition-timing-function: cubic-bezier(.4, 0, .5, 1);
 }
 
 
 /* Search Bar Autocomplete */
 .hide{
 	display: none;
-  }
+}
 
 
-  * { box-sizing: border-box; }
-  body {
+* { box-sizing: border-box; }
+body {
 	font: 16px Arial; 
-  }
-  .autocomplete {
+}
+.autocomplete {
 	/*the container must be positioned relative:*/
 	position: relative;
 	display: inline-block;
-  }
-  input {
+}
+input {
 	border: 1px solid transparent;
 	background-color: #f1f1f1;
 	padding: 10px;
 	font-size: 16px;
-  }
-  input[type=text] {
+}
+input[type=text] {
 	background-color: #f1f1f1;
 	width: 100%;
-  }
-  input[type=submit] {
+}
+input[type=submit] {
 	background-color: DodgerBlue;
 	color: #fff;
-  }
-  .autocomplete-items {
+}
+.autocomplete-items {
 	position: absolute;
 	border: 1px solid #d4d4d4;
 	border-bottom: none;
@@ -183,22 +184,22 @@ a.hvr-shadow-radial:hover {
 	top: 100%;
 	left: 0;
 	right: 0;
-  }
-  .autocomplete-items div {
+}
+.autocomplete-items div {
 	padding: 10px;
 	cursor: pointer;
 	background-color: #fff; 
 	border-bottom: 1px solid #d4d4d4; 
-  }
-  .autocomplete-items div:hover {
+}
+.autocomplete-items div:hover {
 	/*when hovering an item:*/
 	background-color: #e9e9e9; 
-  }
-  .autocomplete-active {
+}
+.autocomplete-active {
 	/*when navigating through the items using the arrow keys:*/
 	background-color: DodgerBlue !important; 
 	color: #ffffff; 
-  }
+}
 
 /*Footer*/
 footer.page-footer {

@@ -1,3 +1,4 @@
+var searchField = $('#search-field');
 $(document).ready(function(){
   $('.fixed-action-btn').floatingActionButton();
 });
@@ -13,10 +14,14 @@ $('#search-toggle').click(function(){
 });
 
 $('#search-toggle-2').click(function(){
-  $(this).hide();
-  $('#search-toggle').show();
-  $('.search-container').removeClass('active');
-  $('.input').removeClass('active');
+  if(searchField.val()){
+    $('.tag-form').submit();
+  } else{
+    $(this).hide();
+    $('#search-toggle').show();
+    $('.search-container').removeClass('active');
+    $('.input').removeClass('active');
+  }
 });
 
 function search() {
