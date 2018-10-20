@@ -117,6 +117,7 @@ var lastFMfunction = function(country){
   // call api with location parameter equaling country
   var lastApiURL  = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&limit=10&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6&tag='+country;
   var lastApiArtistURL  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&format=json&api_key=c6faf2f83e9eec2496df0df7993cb7f6';
+  var lastApiTopTrackURL = 'http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&limit=10&api_key=c6faf2f83e9eec2496df0df7993cb7f6&format=json&artist=';
 
   $.ajax({
     url: lastApiURL,
@@ -125,6 +126,8 @@ var lastFMfunction = function(country){
   .done(function(response) {
     console.log("success");
     $('.artists-results').remove();
+    var artistsEl = $('<ul class="collapsible popout artists-results" data-collapsible="accordion"></ul>');
+    $('body').append(artistsEl);
     var artists = response.topartists.artist;
     var artistNameArr = [];
     for (var i = 0; i < artists.length; i++) {
@@ -148,9 +151,40 @@ var lastFMfunction = function(country){
         var img = $('<img src="'+artist.image[2]["#text"]+'" alt="'+artist.name+'-'+artist.image[2].size+'" />');
         var bio = $('<p>'+artist.bio.summary+'</p>');
         var hr = $('<hr>');
-        var artistsEl = $('<div class="artists-results"></div>');
-        artistsEl.append(name).append(img).append(bio).append(hr);
-        $('body').append(artistsEl);
+        var artistEl = $('<li>');
+        var popoutHeader = $('<div class="collapsible-header valign-wrapper"><div class="row"><div class="col s12">'+artist.name+'</div></div></div>');
+        var popoutBody = $('<div class="collapsible-body"> <div class="row"> <div class="col s9"></div> <div class="col s3"></div> </div> </div>');
+        popoutBody.find('.s9').append(bio);
+		popoutBody.find('.s3').append(img);
+        artistEl.append(popoutHeader).append(popoutBody);
+        console.log(artistEl);
+        artistsEl.append(artistEl);
+        
+         $.ajax({
+          url: lastApiTopTrackURL+artist.name,
+          method: 'get'
+        })
+        .done(function(response) {
+          console.log("success");
+          console.log(response);
+          var track = response.toptracks.track;
+          var trackEl = $('<ul class="collapsible tracksResults" data-collapsible="accordion"><li></li></ul>');
+          var trackHeader = $('<div class="collapsible-header valign-wrapper"><i class="material-icons">expand_more</i><h6>Top Ten Tracks</h6>');
+          var trackBody = $('<div class="collapsible-body"><ol class="tracks"></ol></div>');
+          for (var i = 0; i < track.length; i++) {
+           var el = $('<li>'+track[i].name+'</li>');
+           trackBody.find('.tracks').append(el);
+          }
+          trackEl.find('li').append(trackHeader).append(trackBody); 
+          popoutBody.append(trackEl).promise().done(function(){
+          	$('.collapsible').collapsible({
+          		accordion: true
+          	});
+          });
+
+          var tmArtist = artist.name.toLowerCase().replace(/ /g,'+');
+          loadDoc(tmArtist); 
+        });
       })
       .fail(function() {
         console.log("error");
@@ -170,4 +204,79 @@ var lastFMfunction = function(country){
     console.log("complete");
   });
   
+}
+
+
+// =======================================================================================================================================
+
+
+
+
+var loadDoc = function(artistName) {
+   var queryURL="https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&keyword="+artistName;
+   console.log(queryURL);
+
+   $.ajax({url:queryURL,method:'GET'})
+   .done(function(response){
+       if(response.page.totalPages<1){
+           console.log("Artist not Available");
+       }
+       else{
+           console.table(response._embedded.attractions[0]);
+           if(response._embedded.attractions[0].upcomingEvents._total>0){
+               getEvents(response._embedded.attractions[0].id);
+           }
+           else{console.log("Artist Has No Upcoming Shows")};
+       }
+   });
+}
+
+var getEvents = function(artistId){
+   var queryURL="https://app.ticketmaster.com/discovery/v2/events.json?apikey=EmeiA0oiWGnbz7iXCD6XGf5YLb9StWec&attractionId="+artistId;
+
+   $.ajax({
+    url:queryURL,
+    method:'GET'
+  })
+  .done(function(response){
+    // console.table(response._embedded.events);
+    var events = response._embedded.events;
+    var eventArr;
+    if(events.length >= 10){
+      for (var i = 0; i < 10; i++) {
+        var event = events[i];
+        eventArr = [
+          event.name,
+          event._embedded.venues[0].name,
+          event._embedded.venues[0].city.name,
+          event._embedded.venues[0].state.stateCode,
+          event.url,
+          event.dates.start.localDate,
+          event.dates.start.localTime,
+          'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
+          'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
+        ];
+      }
+    } else{
+      for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+        eventArr = [
+          event.name,
+          event._embedded.venues[0].name,
+          event._embedded.venues[0].city.name,
+          event._embedded.venues[0].state.stateCode,
+          event.url,
+          event.dates.start.localDate,
+          event.dates.start.localTime,
+          'Min Price: ' + event.priceRanges[0].min + event.priceRanges[0].currency,
+          'Max Price: ' + event.priceRanges[0].max + event.priceRanges[0].currency
+        ];
+      }
+    }
+    console.table(eventArr);
+    
+    for (var i = 0; i < eventArr.length; i++) {
+    	console.log(eventArr[i]);
+    }
+  });
 }

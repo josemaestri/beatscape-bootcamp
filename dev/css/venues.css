@@ -1,5 +1,5 @@
 body {
-	font-family: Arial, Helvetica, san-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	color: #3E3E3B;
 	background-color: rgba(205, 197, 193, .5);
@@ -27,7 +27,7 @@ footer.page-footer {
     left: 0;
     bottom: 0;
     width: 100%;
-	background-color: rgba(162, 170, 176, .54);
+	background-color: #C1C4C6;
 	color: #4C586F;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 600;
