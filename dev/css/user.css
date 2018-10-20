@@ -2,7 +2,7 @@ body {
 	font-family: Arial, Helvetica, san-serif;
 	font-size: 14px;
 	color: #3E3E3B;
-	background-color: #CDC5C1;
+	background-color: rgba(205, 197, 193, .5);
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
@@ -53,6 +53,24 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     font-size: 14px;
     color: #4C586F;
 }
+ /* label focus color */
+ .row input[type=text]:focus + label {
+    color: #3e3e3b !important;
+}
+/* label underline focus color */
+.row input[type=text]:focus {
+    border-bottom: 1px solid #3e3e3b !important;
+    box-shadow: 0 1px 0 0 #3e3e3b !important;
+  }
+.row input[type=email]:focus {
+    border-bottom: 1px solid #3e3e3b !important;
+    box-shadow: 0 1px 0 0 #3e3e3b !important;
+  }
+.row input[type=password]:focus {
+    border-bottom: 1px solid #3e3e3b !important;
+    box-shadow: 0 1px 0 0 #3e3e3b !important;
+  }
+
 
 /* Return to Homepage Icon */
 .material-icons {
@@ -107,12 +125,11 @@ footer.page-footer {
     left: 0;
     bottom: 0;
     width: 100%;
-	background-color: #A2AAB0;
+	background-color: rgba(162, 170, 176, .54);
 	color: #4C586F;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 600;
 	font-size: 12px;
-    text-align: center;
-    /* margin-top: 50px; */
-    padding: 7px;
+	text-align: center;
+	padding: 9px;
 }

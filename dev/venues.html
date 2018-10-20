@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Beatscape</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="css/venues.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -12,13 +14,13 @@
     <div class="container">
         <h1 class="text-center">Venues</h1>
         
-        <form>
+        <!-- <form>
             <div class="form-control">
                 <label for="artist">Artist Name</label>
                 <input class="form-control" id="artist" type="text">
             </div>            
-            <button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
-        </form>
+            <button class="btn waves-effect waves-light blue-grey lighten-1" id="submit-button" type="submit">Submit</button>
+        </form> -->
         
         <div class="panel-group">
             <div class="panel panel-default">
@@ -28,21 +30,31 @@
                     </h4>
                 </div>
                 <div id="collapse" class="panel-collapse collapse">
-                    <div class="panel-name">Event Name:</div>
-                    <div class="panel-venue">Venue:</div>
-                    <div class="panel-city">City:</div>
-                    <div class="panel-state">State:</div>
-                    <div class="panel-country">Country:</div>
-                    <div class="panel-website">Website:</div>
-                    <div class="panel-date">Date:</div>
-                    <div class="panel-time">Time:</div>
-                    <div class="panel-Min Price: ">Min. Price:</div>
-                    <div class="panel-Max Price: ">Max. Price:</div>
+                    <ul class="collapsible">
+                        <li class="panel-name">Event Name:</li>
+                        <li class="panel-venue">Venue:</li>
+                        <li class="panel-city">City:</li>
+                        <li class="panel-state">State:</li>
+                        <li class="panel-country">Country:</li>
+                        <li class="panel-website">Website:</li>
+                        <li class="panel-date">Date:</li>
+                        <li class="panel-time">Time:</li>
+                        <li class="panel-Min Price: ">Min. Price:</li>
+                        <li class="panel-Max Price: ">Max. Price:</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="page-footer">
+        © 2018 BEATSCAPE
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="venues.js"></script>
     <script src="assets/js/last.js"></script>
 
 </body>
